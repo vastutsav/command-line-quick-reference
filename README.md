@@ -243,6 +243,7 @@ Examples:
 
 # 4. Filename expansion
 - a wildcard character is a character that is used to represent one or more characters in a filename or foldername.
+- file globbing is the operation that recognizes these wildcard characters and does the expansion. 
 
 wildcard | description                                                        | example      | matches                           | does not match
 ---      | ---                                                                | ---          | ---                               | ---
@@ -281,6 +282,8 @@ Examples:
 - Get the process id of a command by ```ps -ef | grep command```
 - wait for a process to finish by using ```bash wait <process id>```
 - kill a process by using ``` kill <process id>```
+- wait for completion of all child processes<br>```wait```
+- wait for completion of specific process<br>```wait 1234 # where 1234 is the process id```
 
 
 ## 6.1. difference between ```ps``` and ```jobs```
@@ -290,9 +293,10 @@ Examples:
 
 # 7. Quoting
 - Quoting is used to remove special meanings from characters or words
-- escape character - \ is used to preserve the literal value of the following character
-- single quotes - when the single quotes are used, every character within the quotes is preerved and is not evaluated
+- single quotes - when the single quotes are used, every character within the quotes is preserved and is not evaluated
 - double quotes - when the double qoutes are used, the dollar sign, back quotes and blackslashes are evaluated and interpreted.
+- escape character - \ is used to preserve the literal value of the following character.
+ 
 
 Examples: 
 examples          | command            | result
@@ -392,6 +396,7 @@ option  | description
 -v      | display lines that do not match the pattern
 -c      | count the number of matching lines
 -l      | diplay the filename of the file which has the matching pattern
+-o      | print only the matched string. The whole line with the matched string is not printed
 -A\<n>  | include n lines after match 
 -B\<n>  | include n lines before match
 -C\<n>  | include n lines before and after the match
@@ -920,10 +925,12 @@ for i in ./code/*.txt; do cp $i /home/code/backup; done
 - 
 
 # 26. Change History
+- presented in reversed chronological order i.e. the latest change is at the top
 
-Name                 | Change Description          | Date
-----                 | ----                        | ----
-Utsav Barman         | Initial draft               | 24 Jan 2022
+Name                 | Date         | Change Description
+----                 | ----         | ---
+Utsav Barman         | 25 Jan 2022  | Added wait, globbing, grep -o; fixed typos
+Utsav Barman         | 24 Jan 2022  | Initial draft
 
 
 
