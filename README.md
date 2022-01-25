@@ -929,7 +929,7 @@ conditions  | description
 ### 25.1.1. example
 - print all the folders with .c files<br>
 ```bash
-find . -name *.c | {while read filename; do dirname $filename; done;} | sort | uniq # dirname returns the directory name
+find . -name *.c | {while read -r filename; do dirname $filename; done;} | sort | uniq # dirname returns the directory name
 ```
 
 
@@ -942,7 +942,7 @@ find . -name *.c | {while read filename; do dirname $filename; done;} | sort | u
 ### 25.2.1. example
 - copy files from one folder to another
 ```bash
-for i in ./code/*.txt; do cp $i /home/code/backup; done
+for file in ./code/*.txt; do cp $file /home/code/backup; done
 ```
 # 26. One liners
 
@@ -962,6 +962,7 @@ for i in ./code/*.txt; do cp $i /home/code/backup; done
 
 Name                  | Date          | Change Description
 ----                  | ----          | ---
+Utsav Barman          | 25 Jan 2022   | read should be used with option -r ; used appropriate variable names in for loop example;
 Utsav Barman          | 25 Jan 2022   | Updated variable DATE to thedate. Uppercase variables are conventionally used for environment variables. Added $() for command substitution. backticks are discouraged; replaced -a with -e
 Utsav Barman          | 25 Jan 2022   | fixed typo for cd to root directory; added section for special shell variables and exit codes;
 Utsav Barman          | 25 Jan 2022   | Added wait, globbing, grep -o; fixed typos
