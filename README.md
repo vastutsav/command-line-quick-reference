@@ -34,6 +34,8 @@
     - [8.3.3. delete](#833-delete)
     - [8.3.4. file linking](#834-file-linking)
     - [8.3.5. change directory](#835-change-directory)
+    - [8.3.6. display disk usage](#836-display-disk-usage)
+    - [8.3.7. file ownership and permissions](#837-file-ownership-and-permissions)
 - [9. Special shell variables](#9-special-shell-variables)
 - [10. Exit codes](#10-exit-codes)
 - [11. ```grep```](#11-grep)
@@ -346,6 +348,7 @@ command                           | description
 ```less -p "regular" demo.txt```  | show contents of the file from the first line with which the pattern matches
 ```strings -a binaryfile```       | print the sequence of all the printable characters in the file
 ```diff file1 file2```            | shows difference between 2 files
+```comm file1 file2```            | compare 2 sorted file
 
 ## 8.3. file handling
 
@@ -395,6 +398,19 @@ command                           | description
 ```cd /```                        | Change to the root directory
 ```cd ~/dir1/dir2```              | Change to directory relative to home directory
 
+### 8.3.6. display disk usage
+
+command                           | description
+---                               | ---
+```du```                          | estimates and displays the disk space used by the files
+```du -h *```                     | prints size in human readable'
+
+### 8.3.7. file ownership and permissions
+
+command                           | description
+---                               | ---
+```chmod```                       | change permissions
+```chown```                       | change ownership
 
 # 9. Special shell variables
 
@@ -1027,6 +1043,7 @@ options | description
 
 Name                  | Date          | Change Description
 ----                  | ----          | ---
+Utsav Barman          | 25 Jan 2022   | added chown, chmod and du
 Utsav Barman          | 25 Jan 2022   | added & to start a background job; added curl and wget
 Utsav Barman          | 25 Jan 2022   | read should be used with option -r ; used appropriate variable names in for loop example;
 Utsav Barman          | 25 Jan 2022   | Updated variable DATE to thedate. Uppercase variables are conventionally used for environment variables. Added $() for command substitution. backticks are discouraged; replaced -a with -e
