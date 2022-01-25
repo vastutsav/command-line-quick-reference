@@ -34,55 +34,57 @@
     - [8.3.3. delete](#833-delete)
     - [8.3.4. file linking](#834-file-linking)
     - [8.3.5. change directory](#835-change-directory)
-- [9. ```grep```](#9-grep)
-  - [9.1. Useful ```grep``` options](#91-useful-grep-options)
-    - [9.1.1. Examples](#911-examples)
-  - [9.2. Regular expression in grep](#92-regular-expression-in-grep)
-  - [9.3. Examples](#93-examples)
-- [10. ```find```](#10-find)
-  - [10.1. Examples](#101-examples)
-- [11. ```sed``` filter and transform text](#11-sed-filter-and-transform-text)
-  - [11.1. Overview](#111-overview)
-  - [11.2. Examples](#112-examples)
-  - [11.3. Grouping](#113-grouping)
-    - [11.3.1. Grouping Examples:](#1131-grouping-examples)
-  - [11.4. Hold Buffer](#114-hold-buffer)
-    - [11.4.1. Example](#1141-example)
-- [12. ```awk```](#12-awk)
-  - [12.1. Actions](#121-actions)
-  - [12.2. Special variables](#122-special-variables)
-  - [12.3. Examples](#123-examples)
-- [13. Command substitution](#13-command-substitution)
-  - [13.1. Examples](#131-examples)
-- [14. Process substitution](#14-process-substitution)
-  - [14.1. Examples:](#141-examples)
-- [15. Subshell](#15-subshell)
-- [16. ssh](#16-ssh)
-- [17. Text editing with ```cut```, ```paste``` and ```join```](#17-text-editing-with-cut-paste-and-join)
-  - [17.1. ```cut```](#171-cut)
-    - [17.1.1. Examples](#1711-examples)
-  - [17.2. ```paste```](#172-paste)
-    - [17.2.1. Examples](#1721-examples)
-  - [17.3. ```join```](#173-join)
-    - [17.3.1. Examples](#1731-examples)
-- [18. Aliases](#18-aliases)
-  - [18.1. useful aliases](#181-useful-aliases)
-- [19. Functions](#19-functions)
-  - [19.1. useful functions](#191-useful-functions)
-- [20. sort](#20-sort)
-- [21. uniq](#21-uniq)
-- [22. Conditions](#22-conditions)
-  - [22.1. If else](#221-if-else)
-  - [22.2. Short circuiting](#222-short-circuiting)
-    - [22.2.1. example](#2221-example)
-- [23. Loops](#23-loops)
-  - [23.1. while loops](#231-while-loops)
-    - [23.1.1. example](#2311-example)
-  - [23.2. for loops](#232-for-loops)
-    - [23.2.1. example](#2321-example)
-- [24. One liners](#24-one-liners)
-- [25. Further reading](#25-further-reading)
-- [26. Change History](#26-change-history)
+- [9. Special shell variables](#9-special-shell-variables)
+- [10. Exit codes](#10-exit-codes)
+- [11. ```grep```](#11-grep)
+  - [11.1. Useful ```grep``` options](#111-useful-grep-options)
+    - [11.1.1. Examples](#1111-examples)
+  - [11.2. Regular expression in grep](#112-regular-expression-in-grep)
+  - [11.3. Examples](#113-examples)
+- [12. ```find```](#12-find)
+  - [12.1. Examples](#121-examples)
+- [13. ```sed``` filter and transform text](#13-sed-filter-and-transform-text)
+  - [13.1. Overview](#131-overview)
+  - [13.2. Examples](#132-examples)
+  - [13.3. Grouping](#133-grouping)
+    - [13.3.1. Grouping Examples:](#1331-grouping-examples)
+  - [13.4. Hold Buffer](#134-hold-buffer)
+    - [13.4.1. Example](#1341-example)
+- [14. ```awk```](#14-awk)
+  - [14.1. Actions](#141-actions)
+  - [14.2. Special variables](#142-special-variables)
+  - [14.3. Examples](#143-examples)
+- [15. Command substitution](#15-command-substitution)
+  - [15.1. Examples](#151-examples)
+- [16. Process substitution](#16-process-substitution)
+  - [16.1. Examples:](#161-examples)
+- [17. Subshell](#17-subshell)
+- [18. ssh](#18-ssh)
+- [19. Text editing with ```cut```, ```paste``` and ```join```](#19-text-editing-with-cut-paste-and-join)
+  - [19.1. ```cut```](#191-cut)
+    - [19.1.1. Examples](#1911-examples)
+  - [19.2. ```paste```](#192-paste)
+    - [19.2.1. Examples](#1921-examples)
+  - [19.3. ```join```](#193-join)
+    - [19.3.1. Examples](#1931-examples)
+- [20. Aliases](#20-aliases)
+  - [20.1. useful aliases](#201-useful-aliases)
+- [21. Functions](#21-functions)
+  - [21.1. useful functions](#211-useful-functions)
+- [22. sort](#22-sort)
+- [23. uniq](#23-uniq)
+- [24. Conditions](#24-conditions)
+  - [24.1. If else](#241-if-else)
+  - [24.2. Short circuiting](#242-short-circuiting)
+    - [24.2.1. example](#2421-example)
+- [25. Loops](#25-loops)
+  - [25.1. while loops](#251-while-loops)
+    - [25.1.1. example](#2511-example)
+  - [25.2. for loops](#252-for-loops)
+    - [25.2.1. example](#2521-example)
+- [26. One liners](#26-one-liners)
+- [27. Further reading](#27-further-reading)
+- [28. Change History](#28-change-history)
 
 
 # 1. Introduction
@@ -378,16 +380,45 @@ command                           | description
 ```cd ~```                        | Change to home directory
 ```cd -```                        | Change to the previous directory
 ```cd ..```                       | Change to the parent directory
-```cd \```                        | Change to the root directory
+```cd /```                        | Change to the root directory
 ```cd ~/dir1/dir2```              | Change to directory relative to home directory
 
 
-# 9. ```grep```
+# 9. Special shell variables
+
+- there are special variables that are set internally
+- these variables are available to the user
+
+variable  | description
+---       | ---
+$0        | name of the shell
+\$$        | the process id of the current shell
+$?        | the exit status of the last executed command
+$!        | the process id of the last background process
+$_        | the last argument of the previous command
+
+
+# 10. Exit codes
+- also known as return code
+- it is the code that is returned by command or process after it finishes
+- following are few exit codes and their meaning
+
+exit code | description
+---       | ---
+0         | Success
+1         | general error
+126       | command invoked does not have execute permissions
+127       | command not found
+130       | command terminated using Ctrl+C
+
+
+
+# 11. ```grep```
 - searches for pattern in files and prints each line that matches the input pattern
 ```grep -<options> <pattern> <filenames>```
 - grep can be used to search in a single file or in multiple files
 
-## 9.1. Useful ```grep``` options
+## 11.1. Useful ```grep``` options
 
 option  | description
 ---     | ---
@@ -401,7 +432,7 @@ option  | description
 -B\<n>  | include n lines before match
 -C\<n>  | include n lines before and after the match
 
-### 9.1.1. Examples
+### 11.1.1. Examples
 - lets say a demo file(demo.txt) has following content
 
 > THIS IS UPPER CASE LINE<br>
@@ -436,7 +467,7 @@ option  | description
 - Get 2 lines before and after the matching line<br>
   ```grep -C2 "This" demo.txt```
  
-## 9.2. Regular expression in grep
+## 11.2. Regular expression in grep
 - a regular expression is a sequence of characters that specifies the search pattern in text.
 - different characters have special meaning in regular expressions
 
@@ -452,7 +483,7 @@ end$      | matches the pattern only if the pattern is at the end of the line
 \*        | mathces 0 or more occurences of the preceding character
 .*        | matches zero or more of any character
 
-## 9.3. Examples
+## 11.3. Examples
 
 - Match any one character<br>
   ```grep "[Tt]his" demo.txt```
@@ -474,21 +505,21 @@ end$      | matches the pattern only if the pattern is at the end of the line
 
 **Note:** grep can have regular expressions in the search pattern part, and can have wildcards in the files to search section.
 
-# 10. ```find```
+# 12. ```find```
 - the ```find``` command is used to search and locate the list of files and directories
 - the list returned will satisfy the conditions used in find command.
 - syntax is ``` find [starting point] [expression] ```
 - ```-exec [command]``` can be used to run command on the files located by ```find```
 
-## 10.1. Examples
+## 12.1. Examples
 - find files with specific name<br> ```find . -name demo.txt```
 - find files with a specific pattern<br> ``` find ./Codes -name *.cpp```
 - find directories with specific name<br> ```find . -name Codes -type d```
 - find files with permission as 777 and change permissions to 644<br> ```find . -type f -perm 0777 -print -exec chmod 644 {} \;```
 - find and remove files<br>```find . -type f -name "*.bkp" -exec rm -f {};```
 
-# 11. ```sed``` filter and transform text
-## 11.1. Overview
+# 13. ```sed``` filter and transform text
+## 13.1. Overview
 - looks for pattern and edits them
 - works on both files and stdin
 - original files is not updated
@@ -513,7 +544,7 @@ i       | insert a line before pattern
 c       | change a line
 y       | transform
 
-## 11.2. Examples
+## 13.2. Examples
 - remove blank lines<br>``` sed '/^$/d' file.txt```
 - remove all lines with search string<br>```sed '/Search/d' file.txt```
 - remove all instances of search string<br>```sed 's/Search//g' file.txt```
@@ -528,19 +559,19 @@ y       | transform
 - change a line with a pattern<br>```sed '/pattern/ c line changed here' file.txt```
 - change a->p, b->q, c->r<br>```sed 'y/abc/pqr/' file.txt```
   
-## 11.3. Grouping
+## 13.3. Grouping
 - sed allows capturing specific parts of text into groups.
 - these groups can be manipulated
 - group is enclosed within parentheses expression "\(" and "\)" in the search string
 - each group is assigned a number. The first group is assigned \1 and so on.
 - \1 can be both in pattern string and replacement string
 
-### 11.3.1. Grouping Examples:
+### 13.3.1. Grouping Examples:
 - switch first and second columns<br>```sed 's/\([a-z]*\) \([a-z]*\)/\2 \1/' file.txt```
 - print lines which have consecutive duplicate words<br>```sed -n '/\([a-z][a-z]*\) \1/p' file.txt```
 - remove consecutive duplicate words in a line<br>```sed 's/\([a-z][a-z]*\) \1/\1/' file.txt```
 
-## 11.4. Hold Buffer
+## 13.4. Hold Buffer
 - When sed read text, each line is placed into a temporary space.
 - When a new line is read, the old text is replaced by the new line in the temporary space.
 - This temporary space is called pattern space.
@@ -554,14 +585,14 @@ H       | append pattern buffer into hold space
 g       | copy hold space to pattern space
 G       | append hold buffer into pattern buffer
 
-### 11.4.1. Example
+### 13.4.1. Example
 - print one line after and before the pattern match<br>```sed -n '/999/ !{x;d};/999/ {x;p;x;p;n;p}' file.txt```
 - add space after every line<br>```sed 'G' file.txt```
 - insert blank line above every line which matches pattern<br>```sed '/start/ {x;p;x}' file.txt```
 - Insert blank line after every line which matches pattern<br>```sed '/start/ {G}' file.txt```
 - Insert blank line before and after every line which matches pattern<br>```sed '/start/ {x;p;x;G}' file.txt```
 
-# 12. ```awk```
+# 14. ```awk```
 - command line utility to find, process and transform text files
 - the basic syntax is ```pattern { action }```
   - the pattern is compared with every input line. pattern can be any regular expression
@@ -583,7 +614,7 @@ G       | append hold buffer into pattern buffer
 - awk supports associative arrays. example ```var[key] = value```
 - on integers, basic arithmatic operations (+-*/%) are supported. autoincrement(++) and decrement(--) is also supported.
 
-## 12.1. Actions
+## 14.1. Actions
 - following are few actions that can be performed
 
 action                                                                      | description
@@ -597,7 +628,7 @@ action                                                                      | de
 { for (i=1; i < x; i++) { action } }                                        | for loop
 { for (item in c) { action } }                                              | for loop iterating over a list
 
-## 12.2. Special variables
+## 14.2. Special variables
 
 variable    | desc
 ---         | ---
@@ -610,7 +641,7 @@ NR          | Number of lines processed so far. cannot be updated by user
 
 *Note: -F option can be used to update the input field separator -> ```awk -F":"'{ print $1 }' file.txt```*
 
-## 12.3. Examples
+## 14.3. Examples
 - split up “,” (comma) separated fields and print the third field ($3)<br>```awk -F"," '{print $2}' file.txt```
 - print the 3rd field of a csv if the second field ($2) exists and is not empty<br>```awk -F"," '{if ($2)print $3}' file.txt```
 - print the last field in each line<br>```awk -F"," '{ print $NF }' file.txt```
@@ -625,29 +656,29 @@ NR          | Number of lines processed so far. cannot be updated by user
 - print last 10 lines of file (tail)<br>```awk '{vect[NR]=$0;} END{for(i=NR-9;i<=NR;i++) {print vect[i];}}' file.txt```
 - print the total number of bytes used by files<br>```ls -l | awk '{ x += $5 } END { print "Total bytes: " x }'```
 
-# 13. Command substitution
+# 15. Command substitution
 - In command substitution, the output of a command replaces the command
 - the output of a command can be used an argument to another command
 - syntax is ``` `command` ```
 
-## 13.1. Examples
+## 15.1. Examples
 - assign the output of a command to a variable<br> ``` DATE=`date` ```
 - use the output of command as a parameter of another command<br> ``` vi `grep -l 123 *` ```
 
-# 14. Process substitution
+# 16. Process substitution
 - the input or output of a command can appear as a file. This is known as process substitution
 - this technique is useful when we want to use the output of multiple commands as the input to a command
 - process substitution can also be used to capture output and redirect it to the input of a process
 - template - ```<(command)``` and ```>(command)```
 
-## 14.1. Examples:
+## 16.1. Examples:
 - sort and compare two files<br>
   ```diff <(sort file1) <(sort file2)```
 
 - compare 2 folders<br>
   ```diff <(ls $first_directory) <(ls $second_directory)```
 
-# 15. Subshell
+# 17. Subshell
 - a subshell is a child process launched by a shell
 - whenever a shell script is run, a subshell is created and the script is run in the subshell
 - variables defined in parent shell can be accessed if ```export``` is used while defining the variable
@@ -663,7 +694,7 @@ NR          | Number of lines processed so far. cannot be updated by user
 - to run a command or script in the current shell, without creating a subshell, use '.' as in ```. script.sh```
 
 
-# 16. ssh
+# 18. ssh
 - ssh (SSH client) is a program for logging into a remote machine and for executing commands on a remote machine
 - syntax ```ssh user@host```
 - running a single command on remote server<br>```ssh user@host command_to_run```
@@ -671,9 +702,9 @@ NR          | Number of lines processed so far. cannot be updated by user
 - ssh connection using host in the middle```ssh -t reachable_host ssh unreachable_host```
 
 
-# 17. Text editing with ```cut```, ```paste``` and ```join```
+# 19. Text editing with ```cut```, ```paste``` and ```join```
 
-## 17.1. ```cut```
+## 19.1. ```cut```
 - ```cut``` command cuts out sections from each line and writes result to standard output
 - syntax is ```cut OPTION [FILE]```
 
@@ -691,11 +722,11 @@ N-          | fron Nth character to end of line
 N-M         | from Nth character to Mth character
 -M          | from first to Mth character
 
-### 17.1.1. Examples
+### 19.1.1. Examples
 - print the first and third columns of a csv file<br>```cut -f1,3 -d"," file.txt```
 - print the first 3 characters of each line<br>```cut -c -3 file.txt```
 
-## 17.2. ```paste```
+## 19.2. ```paste```
 - merges lines of files
 - by default, the lines from each files are delimited by tab
 - when '-' is used instead of filename, the command reads from standard input
@@ -706,7 +737,7 @@ option  | description
 -d      | used to specify the delimiter
 -s      | paste one file at a time
 
-### 17.2.1. Examples
+### 19.2.1. Examples
 lets take 2 files - number.txt and name.txt
 > cat number.txt
 > 1<br>
@@ -724,11 +755,11 @@ lets take 2 files - number.txt and name.txt
 - merge 2 files, delimited by ','<br>```paste -d"," number.txt name.txt```
 - merge 2 files, sequentially, i.e first only first file is printed and then only the second file<br>```paste -s number.txt name.txt```
 
-## 17.3. ```join```
+## 19.3. ```join```
 - join lines of two files on a common field
 - syntax ```join [OPTIONS] FILE1 FILE2```
 
-### 17.3.1. Examples
+### 19.3.1. Examples
 lets take 2 files - number.txt and name.txt
 > cat number.txt
 > 1 100<br>
@@ -745,7 +776,7 @@ lets take 2 files - number.txt and name.txt
 
 - join 2 files based on the first column<br>```join number.txt name.txt```
 
-# 18. Aliases
+# 20. Aliases
 - aliases are short names for long commands
 - when we need to execute long commands multiple times, it is advisable to create aliases
 - syntax - ```alias [-p] [name[=value]]```
@@ -756,7 +787,7 @@ lets take 2 files - number.txt and name.txt
 - removing alias<br>```unalias name```
 - print all defined alias<br>```alias -p```
 
-## 18.1. useful aliases
+## 20.1. useful aliases
 ```bash
 alias gh='history|grep'
 alias c=clear
@@ -768,7 +799,7 @@ alias count='find . -type f | wc -l'
 alias f='find . |grep '
 ```
 
-# 19. Functions
+# 21. Functions
 - set of commands that accomplish a specific task
 - can be used numerous times
 - helps avoid writing the same code repeatedly
@@ -788,13 +819,13 @@ function_name () {
 function_name () { commands; }
 ```
 
-## 19.1. useful functions
+## 21.1. useful functions
 ```bash
 mcd() { mkdir -p "$1"; cd "$1";}
 cdl() { cd "$1"; ls;}
 ```
 
-# 20. sort
+# 22. sort
 - sort lines text files
 
 option  | description
@@ -804,7 +835,7 @@ option  | description
 -k <n>  | sort based on nth column
 -u      | sort and remove duplicates
 
-# 21. uniq
+# 23. uniq
 - report or omit repeated lines
 - the input file must be sorted
 
@@ -816,8 +847,8 @@ option  | description
 -i      | case insensitive comparison
 
 
-# 22. Conditions
-## 22.1. If else
+# 24. Conditions
+## 24.1. If else
 - if-then-else is supported in command line
 - Syntax
 ```bash
@@ -865,7 +896,7 @@ conditions  | descr>iption
 - 0 is considered true and numbers greater than 0 are considered false. 
   - this is because in Unix/Linix, when a process ends successfuly, it returns 0
 
-## 22.2. Short circuiting
+## 24.2. Short circuiting
 - an alternative way of using conditions is by using logical AND (&&) and logical OR(||)
 - evaluation of a logical expression is stopped, as soon as the outcome has been determined. This is known as short-circuiting.
 - in case of Logical AND, as soon as sub-expression becomes false, the whole expression evaluates to false
@@ -875,7 +906,7 @@ conditions  | descr>iption
   - in case of *expr1 || expr2*, if expr1 evaluates to true, then the whole expression will evaluate to true. So, expr2 is not evaluated at all.
   - || can be used to ensure that command2 is run only if command1 fails. example -> ```command1 || command2```
 
-### 22.2.1. example
+### 24.2.1. example
 - create folder if it does not exist  
 ```bash
   [ -d ./some/path/folder ] || mkdir /some/path/folder
@@ -886,32 +917,32 @@ conditions  | descr>iption
   cd /some/path/folder && touch file.txt
 ```
 
-# 23. Loops
-## 23.1. while loops
+# 25. Loops
+## 25.1. while loops
 - the loop runs as long as the given condition is true
 - syntax 
   ```bash 
   while [ condition ]; do commands; done
   ```
-### 23.1.1. example
+### 25.1.1. example
 - print all the folders with .c files<br>
 ```bash
 find . -name *.c | {while read filename; do dirname $filename; done;} | sort | uniq # dirname returns the directory name
 ```
 
 
-## 23.2. for loops
+## 25.2. for loops
 - the loop iterates over a list of values or preset number of times
 - syntax 
   ```bash
   for <variable name> in <a list of items>;do <some command> $<variable name>;done;
   ```
-### 23.2.1. example
+### 25.2.1. example
 - copy files from one folder to another
 ```bash
 for i in ./code/*.txt; do cp $i /home/code/backup; done
 ```
-# 24. One liners
+# 26. One liners
 
 - print the files and directories in tree structure<br>```find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"```
 - print the directories in tree structure<br>```find . -type d   | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/| - \1/"```
@@ -921,16 +952,17 @@ for i in ./code/*.txt; do cp $i /home/code/backup; done
 - find most frequently used commands<br>```history | cut -c8- | sort | uniq -c | sort -rn | head```
 - recursively remove only directories with no files<br>```find . -depth -type d -exec rmdir {} \;```
 
-# 25. Further reading
+# 27. Further reading
 - 
 
-# 26. Change History
+# 28. Change History
 - presented in reversed chronological order i.e. the latest change is at the top
 
-Name                 | Date         | Change Description
-----                 | ----         | ---
-Utsav Barman         | 25 Jan 2022  | Added wait, globbing, grep -o; fixed typos
-Utsav Barman         | 24 Jan 2022  | Initial draft
+Name                  | Date          | Change Description
+----                  | ----          | ---
+Utsav Barman          | 25 Jan 2022   | fixed typo for cd to root directory; added section for special shell variables and exit codes;
+Utsav Barman          | 25 Jan 2022   | Added wait, globbing, grep -o; fixed typos
+Utsav Barman          | 24 Jan 2022   | Initial draft
 
 
 
