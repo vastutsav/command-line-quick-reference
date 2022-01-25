@@ -659,11 +659,13 @@ NR          | Number of lines processed so far. cannot be updated by user
 # 15. Command substitution
 - In command substitution, the output of a command replaces the command
 - the output of a command can be used an argument to another command
-- syntax is ``` `command` ```
+- syntax is ``` `command` ``` and ```$(command)```
+- using backticks (`) is discouraged and has been deprecated
+- ```$(commmand)``` supports nesting i.e. ```$(command1 $(command2))```
 
 ## 15.1. Examples
-- assign the output of a command to a variable<br> ``` DATE=`date` ```
-- use the output of command as a parameter of another command<br> ``` vi `grep -l 123 *` ```
+- assign the output of a command to a variable<br> ``` thedate=`date` ```
+- use the output of command as a parameter of another command<br> ``` vi $(grep -l 123 *) ```
 
 # 16. Process substitution
 - the input or output of a command can appear as a file. This is known as process substitution
@@ -865,7 +867,7 @@ if [ condition1 ]; then command1; elif [ condition2 ]; then command2; else comma
 
 conditions  | description
 ---         | ---
--a          | check if file exists
+-e          | check if file exists
 -r          | check if file exists and is readable
 -w          | check if file exists and is writable
 -d          | check if file exists and is a directory
@@ -883,7 +885,7 @@ conditions  | description
 
   3. number based conditions
 
-conditions  | descr>iption
+conditions  | description
 ---         | ---
 -eq         | check if the numbers are equal
 -ne         | check if the numbers are not equal
@@ -960,6 +962,7 @@ for i in ./code/*.txt; do cp $i /home/code/backup; done
 
 Name                  | Date          | Change Description
 ----                  | ----          | ---
+Utsav Barman          | 25 Jan 2022   | Updated variable DATE to thedate. Uppercase variables are conventionally used for environment variables. Added $() for command substitution. backticks are discouraged; replaced -a with -e
 Utsav Barman          | 25 Jan 2022   | fixed typo for cd to root directory; added section for special shell variables and exit codes;
 Utsav Barman          | 25 Jan 2022   | Added wait, globbing, grep -o; fixed typos
 Utsav Barman          | 24 Jan 2022   | Initial draft
