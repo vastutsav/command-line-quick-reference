@@ -349,16 +349,18 @@ Examples:
 - Quoting is used to remove special meanings from characters or words
 - single quotes - when the single quotes are used, every character within the quotes is preserved and is not evaluated
 - double quotes - when the double qoutes are used, the dollar sign, back quotes and blackslashes are evaluated and interpreted.
-- escape character - \ is used to preserve the literal value of the following character.
- 
+- escape character - \ is used to preserve the literal value of the following character. 
+- ANSI C quoting - backslash escaped characters are treated according to ANSI C standard. Format:- ```$'string```
+
 
 Examples: 
-examples          | command            | result
----               | ---                | ---
-no quote          | ```echo $HOME```   | /home/user1/
-escape character  | ```echo \$HOME```  | $HOME
-single quote      | ```echo '$HOME'``` | $HOME
-double quote      | ```echo "$HOME"``` | /home/user1/
+examples          | command                                       | result
+---               | ---                                           | ---
+no quote          | ```echo $HOME```                              | /home/user1/
+escape character  | ```echo \$HOME```                             | $HOME
+single quote      | ```echo '$HOME'```                            | $HOME
+double quote      | ```echo "$HOME"```                            | /home/user1/
+ANSI C quoting    | ```echo $'There\'s a quote in my string!'```  | There's a quote in my string
 
 # 9. Basic file management
 
@@ -1100,6 +1102,7 @@ options | description
 
 Name                  | Date          | Change Description
 ----                  | ----          | ---
+Utsav Barman          | 26 Jan 2022   | added:[ANSI C quoting]
 Utsav Barman          | 26 Jan 2022   | added: [brace expansion, find piped to xargs, herestrings, awk example]
 Utsav Barman          | 26 Jan 2022   | added: [command grouping]
 Utsav Barman          | 25 Jan 2022   | added: [chown, chmod and du]
