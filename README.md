@@ -59,49 +59,51 @@
   - [15.1. Actions](#151-actions)
   - [15.2. Special variables](#152-special-variables)
   - [15.3. Examples](#153-examples)
-- [16. Command substitution](#16-command-substitution)
-  - [16.1. Examples](#161-examples)
-- [17. Process substitution](#17-process-substitution)
-  - [17.1. Examples:](#171-examples)
-- [18. Subshell](#18-subshell)
-- [19. Command grouping](#19-command-grouping)
-  - [19.1. using parentheses](#191-using-parentheses)
-  - [19.2. using curly braces](#192-using-curly-braces)
-- [20. Text editing with ```cut```, ```paste``` and ```join```](#20-text-editing-with-cut-paste-and-join)
-  - [20.1. ```cut```](#201-cut)
-    - [20.1.1. Examples](#2011-examples)
-  - [20.2. ```paste```](#202-paste)
-    - [20.2.1. Examples](#2021-examples)
-  - [20.3. ```join```](#203-join)
-    - [20.3.1. Examples](#2031-examples)
-- [21. Aliases](#21-aliases)
-  - [21.1. useful aliases](#211-useful-aliases)
-- [22. Functions](#22-functions)
-  - [22.1. useful functions](#221-useful-functions)
-- [23. sort](#23-sort)
-- [24. uniq](#24-uniq)
-- [25. Conditions](#25-conditions)
-  - [25.1. If else](#251-if-else)
-  - [25.2. Short circuiting](#252-short-circuiting)
-    - [25.2.1. example](#2521-example)
-- [26. Loops](#26-loops)
-  - [26.1. while loops](#261-while-loops)
-    - [26.1.1. example](#2611-example)
-  - [26.2. for loops](#262-for-loops)
+- [16. Arithmetic expansion](#16-arithmetic-expansion)
+  - [16.1. Example](#161-example)
+- [17. Command substitution](#17-command-substitution)
+  - [17.1. Examples](#171-examples)
+- [18. Process substitution](#18-process-substitution)
+  - [18.1. Examples:](#181-examples)
+- [19. Subshell](#19-subshell)
+- [20. Command grouping](#20-command-grouping)
+  - [20.1. using parentheses](#201-using-parentheses)
+  - [20.2. using curly braces](#202-using-curly-braces)
+- [21. Text editing with ```cut```, ```paste``` and ```join```](#21-text-editing-with-cut-paste-and-join)
+  - [21.1. ```cut```](#211-cut)
+    - [21.1.1. Examples](#2111-examples)
+  - [21.2. ```paste```](#212-paste)
+    - [21.2.1. Examples](#2121-examples)
+  - [21.3. ```join```](#213-join)
+    - [21.3.1. Examples](#2131-examples)
+- [22. Aliases](#22-aliases)
+  - [22.1. useful aliases](#221-useful-aliases)
+- [23. Functions](#23-functions)
+  - [23.1. useful functions](#231-useful-functions)
+- [24. sort](#24-sort)
+- [25. uniq](#25-uniq)
+- [26. Conditions](#26-conditions)
+  - [26.1. If else](#261-if-else)
+  - [26.2. Short circuiting](#262-short-circuiting)
     - [26.2.1. example](#2621-example)
-- [27. ssh](#27-ssh)
-- [28. curl](#28-curl)
-  - [28.1. Examples](#281-examples)
-  - [28.2. handling REST calls](#282-handling-rest-calls)
-    - [28.2.1. GET](#2821-get)
-    - [28.2.2. POST](#2822-post)
-    - [28.2.3. PUT](#2823-put)
-    - [28.2.4. DELETE](#2824-delete)
-- [29. wget](#29-wget)
+- [27. Loops](#27-loops)
+  - [27.1. while loops](#271-while-loops)
+    - [27.1.1. example](#2711-example)
+  - [27.2. for loops](#272-for-loops)
+    - [27.2.1. example](#2721-example)
+- [28. ssh](#28-ssh)
+- [29. curl](#29-curl)
   - [29.1. Examples](#291-examples)
-- [30. One liners](#30-one-liners)
-- [31. Further reading](#31-further-reading)
-- [32. Change History](#32-change-history)
+  - [29.2. handling REST calls](#292-handling-rest-calls)
+    - [29.2.1. GET](#2921-get)
+    - [29.2.2. POST](#2922-post)
+    - [29.2.3. PUT](#2923-put)
+    - [29.2.4. DELETE](#2924-delete)
+- [30. wget](#30-wget)
+  - [30.1. Examples](#301-examples)
+- [31. One liners](#31-one-liners)
+- [32. Further reading](#32-further-reading)
+- [33. Change History](#33-change-history)
 
 
 # 1. Introduction
@@ -494,8 +496,10 @@ option  | description
 -n      | display line numbers along with lines
 -v      | display lines that do not match the pattern
 -c      | count the number of matching lines
+-r      | search in all files under each directory
 -l      | diplay the filename of the file which has the matching pattern
 -o      | print only the matched string. The whole line with the matched string is not printed
+-I      | ignore binary files
 -A\<n>  | include n lines after match 
 -B\<n>  | include n lines before match
 -C\<n>  | include n lines before and after the match
@@ -534,6 +538,9 @@ option  | description
 
 - Get 2 lines before and after the matching line<br>
   ```grep -C2 "This" demo.txt```
+
+- Search recursively in all files in subdirectories<br>
+  ```grep -inrI 'some text' /path/to/dir```
  
 ## 12.2. Regular expression in grep
 - a regular expression is a sequence of characters that specifies the search pattern in text.
@@ -726,31 +733,39 @@ NR          | Number of lines processed so far. cannot be updated by user
 - print the total number of bytes used by files<br>```ls -l | awk '{ x += $5 } END { print "Total bytes: " x }'```
 - read a csv(comma separated) file and print the first and third field in semicolon separated format<br>```awk 'BEGIN{FS=",";OFS=";"}{print $1, $3}' file.txt```
 
-# 16. Command substitution
+# 16. Arithmetic expansion
+- arithmetic expression can be evaluated and the result can then be used.
+- syntax - ```$(( expression ))```
+
+## 16.1. Example
+- print sum of 2 numbers<br>```echo $((1+3))```
+
+# 17. Command substitution
 - In command substitution, the output of a command replaces the command
 - the output of a command can be used an argument to another command
 - syntax is ``` `command` ``` and ```$(command)```
 - using backticks (`) is discouraged and has been deprecated
 - ```$(commmand)``` supports nesting i.e. ```$(command1 $(command2))```
 
-## 16.1. Examples
+## 17.1. Examples
 - assign the output of a command to a variable<br> ``` thedate=`date` ```
 - use the output of command as a parameter of another command<br> ``` vi $(grep -l 123 *) ```
+- assign contents of file to a variable<br>```filedata=$(cat file.txt)```<br>```filedata=$(<file.txt)```<br>*second option is faster*
 
-# 17. Process substitution
+# 18. Process substitution
 - the input or output of a command can appear as a file. This is known as process substitution
 - this technique is useful when we want to use the output of multiple commands as the input to a command
 - process substitution can also be used to capture output and redirect it to the input of a process
 - template - ```<(command)``` and ```>(command)```
 
-## 17.1. Examples:
+## 18.1. Examples:
 - sort and compare two files<br>
   ```diff <(sort file1) <(sort file2)```
 
 - compare 2 folders<br>
   ```diff <(ls $first_directory) <(ls $second_directory)```
 
-# 18. Subshell
+# 19. Subshell
 - a subshell is a child process launched by a shell
 - whenever a shell script is run, a subshell is created and the script is run in the subshell
 - variables defined in parent shell can be accessed if ```export``` is used while defining the variable
@@ -765,24 +780,24 @@ NR          | Number of lines processed so far. cannot be updated by user
 ```
 - to run a command or script in the current shell, without creating a subshell, use '.' as in ```. script.sh```
 
-# 19. Command grouping
+# 20. Command grouping
 - sometimes we need to run multiple commands and redirect all the output to a single file. Command grouping helps in this.
 - without command grouping we need to redirect each command output individually to a file
 
-## 19.1. using parentheses
+## 20.1. using parentheses
 - Grouping list of commands can be done using parentheses *()*
 - a subshell is created
 - example - ```(date; uptime) > file.txt```
 
-## 19.2. using curly braces
+## 20.2. using curly braces
 - Grouping commands can be done using curly braces *{}*
 - causes the list to be executed in the current shell context 
 - no subshell is created
 - example - ```{date; uptime;} > file.txt```
 
-# 20. Text editing with ```cut```, ```paste``` and ```join```
+# 21. Text editing with ```cut```, ```paste``` and ```join```
 
-## 20.1. ```cut```
+## 21.1. ```cut```
 - ```cut``` command cuts out sections from each line and writes result to standard output
 - syntax is ```cut OPTION [FILE]```
 
@@ -800,11 +815,11 @@ N-          | fron Nth character to end of line
 N-M         | from Nth character to Mth character
 -M          | from first to Mth character
 
-### 20.1.1. Examples
+### 21.1.1. Examples
 - print the first and third columns of a csv file<br>```cut -f1,3 -d"," file.txt```
 - print the first 3 characters of each line<br>```cut -c -3 file.txt```
 
-## 20.2. ```paste```
+## 21.2. ```paste```
 - merges lines of files
 - by default, the lines from each files are delimited by tab
 - when '-' is used instead of filename, the command reads from standard input
@@ -815,7 +830,7 @@ option  | description
 -d      | used to specify the delimiter
 -s      | paste one file at a time
 
-### 20.2.1. Examples
+### 21.2.1. Examples
 lets take 2 files - number.txt and name.txt
 > cat number.txt
 > 1<br>
@@ -833,11 +848,11 @@ lets take 2 files - number.txt and name.txt
 - merge 2 files, delimited by ','<br>```paste -d"," number.txt name.txt```
 - merge 2 files, sequentially, i.e first only first file is printed and then only the second file<br>```paste -s number.txt name.txt```
 
-## 20.3. ```join```
+## 21.3. ```join```
 - join lines of two files on a common field
 - syntax ```join [OPTIONS] FILE1 FILE2```
 
-### 20.3.1. Examples
+### 21.3.1. Examples
 lets take 2 files - number.txt and name.txt
 > cat number.txt
 > 1 100<br>
@@ -854,7 +869,7 @@ lets take 2 files - number.txt and name.txt
 
 - join 2 files based on the first column<br>```join number.txt name.txt```
 
-# 21. Aliases
+# 22. Aliases
 - aliases are short names for long commands
 - when we need to execute long commands multiple times, it is advisable to create aliases
 - syntax - ```alias [-p] [name[=value]]```
@@ -865,7 +880,7 @@ lets take 2 files - number.txt and name.txt
 - removing alias<br>```unalias name```
 - print all defined alias<br>```alias -p```
 
-## 21.1. useful aliases
+## 22.1. useful aliases
 ```bash
 alias gh='history|grep'
 alias c=clear
@@ -877,7 +892,7 @@ alias count='find . -type f | wc -l'
 alias f='find . |grep '
 ```
 
-# 22. Functions
+# 23. Functions
 - set of commands that accomplish a specific task
 - can be used numerous times
 - helps avoid writing the same code repeatedly
@@ -897,13 +912,13 @@ function_name () {
 function_name () { commands; }
 ```
 
-## 22.1. useful functions
+## 23.1. useful functions
 ```bash
 mcd() { mkdir -p "$1"; cd "$1";}
 cdl() { cd "$1"; ls;}
 ```
 
-# 23. sort
+# 24. sort
 - sort lines text files
 
 option  | description
@@ -913,7 +928,7 @@ option  | description
 -k <n>  | sort based on nth column
 -u      | sort and remove duplicates
 
-# 24. uniq
+# 25. uniq
 - report or omit repeated lines
 - the input file must be sorted
 
@@ -925,8 +940,8 @@ option  | description
 -i      | case insensitive comparison
 
 
-# 25. Conditions
-## 25.1. If else
+# 26. Conditions
+## 26.1. If else
 - if-then-else is supported in command line
 - Syntax
 ```bash
@@ -974,7 +989,7 @@ conditions  | description
 - 0 is considered true and numbers greater than 0 are considered false. 
   - this is because in Unix/Linix, when a process ends successfuly, it returns 0
 
-## 25.2. Short circuiting
+## 26.2. Short circuiting
 - an alternative way of using conditions is by using logical AND (&&) and logical OR(||)
 - evaluation of a logical expression is stopped, as soon as the outcome has been determined. This is known as short-circuiting.
 - in case of Logical AND, as soon as sub-expression becomes false, the whole expression evaluates to false
@@ -984,7 +999,7 @@ conditions  | description
   - in case of *expr1 || expr2*, if expr1 evaluates to true, then the whole expression will evaluate to true. So, expr2 is not evaluated at all.
   - || can be used to ensure that command2 is run only if command1 fails. example -> ```command1 || command2```
 
-### 25.2.1. example
+### 26.2.1. example
 - create folder if it does not exist  
 ```bash
   [ -d ./some/path/folder ] || mkdir /some/path/folder
@@ -995,40 +1010,40 @@ conditions  | description
   cd /some/path/folder && touch file.txt
 ```
 
-# 26. Loops
-## 26.1. while loops
+# 27. Loops
+## 27.1. while loops
 - the loop runs as long as the given condition is true
 - syntax 
   ```bash 
   while [ condition ]; do commands; done
   ```
-### 26.1.1. example
+### 27.1.1. example
 - print all the folders with .c files<br>
 ```bash
 find . -name *.c | {while read -r filename; do dirname $filename; done;} | sort | uniq # dirname returns the directory name
 ```
 
 
-## 26.2. for loops
+## 27.2. for loops
 - the loop iterates over a list of values or preset number of times
 - syntax 
   ```bash
   for <variable name> in <a list of items>;do <some command> $<variable name>;done;
   ```
-### 26.2.1. example
+### 27.2.1. example
 - copy files from one folder to another
 ```bash
 for file in ./code/*.txt; do cp $file /home/code/backup; done
 ```
 
-# 27. ssh
+# 28. ssh
 - ssh (SSH client) is a program for logging into a remote machine and for executing commands on a remote machine
 - syntax ```ssh user@host```
 - running a single command on remote server<br>```ssh user@host command_to_run```
 - logging into server with different port<br>```ssh -p portnum user@host```
 - ssh connection using host in the middle```ssh -t reachable_host ssh unreachable_host```
 
-# 28. curl
+# 29. curl
 - used to transfer data from one server to another
 - syntax - ```curl [options] [URL]```
 
@@ -1041,35 +1056,35 @@ options | description
 -L      | follow redirects
 
 
-## 28.1. Examples
+## 29.1. Examples
 - retrieve a webpage<br>```curl example.com```
 - save a webpage<br>```curl example.com -o example.html```
 - resume a download<br>```curl -C - -O https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso```
 - fetch headers only<br>```curl -I example.com```
 - fetch weather<br>```curl wttr.in/london```
 
-## 28.2. handling REST calls
-### 28.2.1. GET
+## 29.2. handling REST calls
+### 29.2.1. GET
 - GET is used to fetch resource
 - the GET method is the default method
 - example ```curl https://reqres.in/api/users/2```
 
-### 28.2.2. POST
+### 29.2.2. POST
 - POST is used to create resource in a server
 - To send a curl POST request we use the option -X POST
 - example ```curl -X POST -H "Content-Type: application/json" -d '{"email": "eve.holt@reqres.in","password": "pistol"}' https://reqres.in/api/register```
 
-### 28.2.3. PUT
+### 29.2.3. PUT
 - PUT is used to update resource
 - To send a curl PUT request we use the option -X PUT
 - example ```curl -X PUT -H "Content-Type: application/json" -d '{"name": "morpheus","job": "zion resident"}' https://reqres.in/api/users/2```
 
-### 28.2.4. DELETE
+### 29.2.4. DELETE
 - DELETE is used to remove resource
 - To send a curl DELETE request we use the option -X DELETE
 - example ```curl -X DELETE https://reqres.in/api/users/2```
 
-# 29. wget
+# 30. wget
 - command line utility to download file
 
 options | description
@@ -1077,12 +1092,12 @@ options | description
 -O      | download file under different name
 -c      | resume a download
 
-## 29.1. Examples
+## 30.1. Examples
 - download a file<br>```wget https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso```
 - resume a download<br>```wget -c https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso```
 
 
-# 30. One liners
+# 31. One liners
 
 - print the files and directories in tree structure<br>```find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"```
 - print the directories in tree structure<br>```find . -type d   | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/| - \1/"```
@@ -1093,15 +1108,17 @@ options | description
 - recursively remove only directories with no files<br>```find . -depth -type d -exec rmdir {} \;```
 - count the number of total active network interfaces<br>```wc -w <<<$(netstat -i | cut -d" " -f1 | egrep -v "^Kernel|Iface|lo")```
 - display all the files/directories sorted by size<br>```du -ah . 2>/dev/null | sort -hr  | less```
+- make multiple copies of file<br>```tee filecopy{1..10}.txt < file.txt```
 
-# 31. Further reading
+# 32. Further reading
 - 
 
-# 32. Change History
+# 33. Change History
 - presented in reversed chronological order i.e. the latest change is at the top
 
 Name                  | Date          | Change Description
 ----                  | ----          | ---
+Utsav Barman          | 26 Jan 2022   | 
 Utsav Barman          | 26 Jan 2022   | added:[ANSI C quoting]
 Utsav Barman          | 26 Jan 2022   | added: [brace expansion, find piped to xargs, herestrings, awk example]
 Utsav Barman          | 26 Jan 2022   | added: [command grouping]
