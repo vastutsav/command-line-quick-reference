@@ -16,89 +16,92 @@
     - [3.2.2. Additional Examples](#322-additional-examples)
       - [3.2.2.1. Send standard output to sout.txt and standard error to serr.txt](#3221-send-standard-output-to-souttxt-and-standard-error-to-serrtxt)
       - [3.2.2.2. Send standard output and standard error streams to the same file sone.txt](#3222-send-standard-output-and-standard-error-streams-to-the-same-file-sonetxt)
-      - [3.2.2.3. Ignore both standard input and output](#3223-ignore-both-standard-input-and-output)
+      - [3.2.2.3. Check if a string is present in a shell variable](#3223-check-if-a-string-is-present-in-a-shell-variable)
+      - [3.2.2.4. Ignore both standard input and output](#3224-ignore-both-standard-input-and-output)
   - [3.3. Pipe](#33-pipe)
   - [3.4. xargs](#34-xargs)
   - [3.5. tee](#35-tee)
 - [4. Filename expansion](#4-filename-expansion)
-- [5. Job control](#5-job-control)
-- [6. Process handling](#6-process-handling)
-  - [6.1. difference between ```ps``` and ```jobs```](#61-difference-between-ps-and-jobs)
-- [7. Quoting](#7-quoting)
-- [8. Basic file management](#8-basic-file-management)
-  - [8.1. list directory ```ls```](#81-list-directory-ls)
-  - [8.2. show file contents](#82-show-file-contents)
-  - [8.3. file handling](#83-file-handling)
-    - [8.3.1. copy](#831-copy)
-    - [8.3.2. move or rename](#832-move-or-rename)
-    - [8.3.3. delete](#833-delete)
-    - [8.3.4. file linking](#834-file-linking)
-    - [8.3.5. change directory](#835-change-directory)
-    - [8.3.6. display disk usage](#836-display-disk-usage)
-    - [8.3.7. file ownership and permissions](#837-file-ownership-and-permissions)
-- [9. Special shell variables](#9-special-shell-variables)
-- [10. Exit codes](#10-exit-codes)
-- [11. ```grep```](#11-grep)
-  - [11.1. Useful ```grep``` options](#111-useful-grep-options)
-    - [11.1.1. Examples](#1111-examples)
-  - [11.2. Regular expression in grep](#112-regular-expression-in-grep)
-  - [11.3. Examples](#113-examples)
-- [12. ```find```](#12-find)
-  - [12.1. Examples](#121-examples)
-- [13. ```sed``` filter and transform text](#13-sed-filter-and-transform-text)
-  - [13.1. Overview](#131-overview)
-  - [13.2. Examples](#132-examples)
-  - [13.3. Grouping](#133-grouping)
-    - [13.3.1. Grouping Examples:](#1331-grouping-examples)
-  - [13.4. Hold Buffer](#134-hold-buffer)
-    - [13.4.1. Example](#1341-example)
-- [14. ```awk```](#14-awk)
-  - [14.1. Actions](#141-actions)
-  - [14.2. Special variables](#142-special-variables)
-  - [14.3. Examples](#143-examples)
-- [15. Command substitution](#15-command-substitution)
-  - [15.1. Examples](#151-examples)
-- [16. Process substitution](#16-process-substitution)
-  - [16.1. Examples:](#161-examples)
-- [17. Subshell](#17-subshell)
-- [18. Command grouping](#18-command-grouping)
-  - [18.1. using parentheses](#181-using-parentheses)
-  - [18.2. using curly braces](#182-using-curly-braces)
-- [19. Text editing with ```cut```, ```paste``` and ```join```](#19-text-editing-with-cut-paste-and-join)
-  - [19.1. ```cut```](#191-cut)
-    - [19.1.1. Examples](#1911-examples)
-  - [19.2. ```paste```](#192-paste)
-    - [19.2.1. Examples](#1921-examples)
-  - [19.3. ```join```](#193-join)
-    - [19.3.1. Examples](#1931-examples)
-- [20. Aliases](#20-aliases)
-  - [20.1. useful aliases](#201-useful-aliases)
-- [21. Functions](#21-functions)
-  - [21.1. useful functions](#211-useful-functions)
-- [22. sort](#22-sort)
-- [23. uniq](#23-uniq)
-- [24. Conditions](#24-conditions)
-  - [24.1. If else](#241-if-else)
-  - [24.2. Short circuiting](#242-short-circuiting)
-    - [24.2.1. example](#2421-example)
-- [25. Loops](#25-loops)
-  - [25.1. while loops](#251-while-loops)
-    - [25.1.1. example](#2511-example)
-  - [25.2. for loops](#252-for-loops)
+- [5. Brace expansion](#5-brace-expansion)
+  - [5.1. Examples](#51-examples)
+- [6. Job control](#6-job-control)
+- [7. Process handling](#7-process-handling)
+  - [7.1. difference between ```ps``` and ```jobs```](#71-difference-between-ps-and-jobs)
+- [8. Quoting](#8-quoting)
+- [9. Basic file management](#9-basic-file-management)
+  - [9.1. list directory ```ls```](#91-list-directory-ls)
+  - [9.2. show file contents](#92-show-file-contents)
+  - [9.3. file handling](#93-file-handling)
+    - [9.3.1. copy](#931-copy)
+    - [9.3.2. move or rename](#932-move-or-rename)
+    - [9.3.3. delete](#933-delete)
+    - [9.3.4. file linking](#934-file-linking)
+    - [9.3.5. change directory](#935-change-directory)
+    - [9.3.6. display disk usage](#936-display-disk-usage)
+    - [9.3.7. file ownership and permissions](#937-file-ownership-and-permissions)
+- [10. Special shell variables](#10-special-shell-variables)
+- [11. Exit codes](#11-exit-codes)
+- [12. ```grep```](#12-grep)
+  - [12.1. Useful ```grep``` options](#121-useful-grep-options)
+    - [12.1.1. Examples](#1211-examples)
+  - [12.2. Regular expression in grep](#122-regular-expression-in-grep)
+  - [12.3. Examples](#123-examples)
+- [13. ```find```](#13-find)
+  - [13.1. Examples](#131-examples)
+- [14. ```sed``` filter and transform text](#14-sed-filter-and-transform-text)
+  - [14.1. Overview](#141-overview)
+  - [14.2. Examples](#142-examples)
+  - [14.3. Grouping](#143-grouping)
+    - [14.3.1. Grouping Examples:](#1431-grouping-examples)
+  - [14.4. Hold Buffer](#144-hold-buffer)
+    - [14.4.1. Example](#1441-example)
+- [15. ```awk```](#15-awk)
+  - [15.1. Actions](#151-actions)
+  - [15.2. Special variables](#152-special-variables)
+  - [15.3. Examples](#153-examples)
+- [16. Command substitution](#16-command-substitution)
+  - [16.1. Examples](#161-examples)
+- [17. Process substitution](#17-process-substitution)
+  - [17.1. Examples:](#171-examples)
+- [18. Subshell](#18-subshell)
+- [19. Command grouping](#19-command-grouping)
+  - [19.1. using parentheses](#191-using-parentheses)
+  - [19.2. using curly braces](#192-using-curly-braces)
+- [20. Text editing with ```cut```, ```paste``` and ```join```](#20-text-editing-with-cut-paste-and-join)
+  - [20.1. ```cut```](#201-cut)
+    - [20.1.1. Examples](#2011-examples)
+  - [20.2. ```paste```](#202-paste)
+    - [20.2.1. Examples](#2021-examples)
+  - [20.3. ```join```](#203-join)
+    - [20.3.1. Examples](#2031-examples)
+- [21. Aliases](#21-aliases)
+  - [21.1. useful aliases](#211-useful-aliases)
+- [22. Functions](#22-functions)
+  - [22.1. useful functions](#221-useful-functions)
+- [23. sort](#23-sort)
+- [24. uniq](#24-uniq)
+- [25. Conditions](#25-conditions)
+  - [25.1. If else](#251-if-else)
+  - [25.2. Short circuiting](#252-short-circuiting)
     - [25.2.1. example](#2521-example)
-- [26. ssh](#26-ssh)
-- [27. curl](#27-curl)
-  - [27.1. Examples](#271-examples)
-  - [27.2. handling REST calls](#272-handling-rest-calls)
-    - [27.2.1. GET](#2721-get)
-    - [27.2.2. POST](#2722-post)
-    - [27.2.3. PUT](#2723-put)
-    - [27.2.4. DELETE](#2724-delete)
-- [28. wget](#28-wget)
+- [26. Loops](#26-loops)
+  - [26.1. while loops](#261-while-loops)
+    - [26.1.1. example](#2611-example)
+  - [26.2. for loops](#262-for-loops)
+    - [26.2.1. example](#2621-example)
+- [27. ssh](#27-ssh)
+- [28. curl](#28-curl)
   - [28.1. Examples](#281-examples)
-- [29. One liners](#29-one-liners)
-- [30. Further reading](#30-further-reading)
-- [31. Change History](#31-change-history)
+  - [28.2. handling REST calls](#282-handling-rest-calls)
+    - [28.2.1. GET](#2821-get)
+    - [28.2.2. POST](#2822-post)
+    - [28.2.3. PUT](#2823-put)
+    - [28.2.4. DELETE](#2824-delete)
+- [29. wget](#29-wget)
+  - [29.1. Examples](#291-examples)
+- [30. One liners](#30-one-liners)
+- [31. Further reading](#31-further-reading)
+- [32. Change History](#32-change-history)
 
 
 # 1. Introduction
@@ -200,7 +203,8 @@ Bracket type   | description
 \>>            | append stream to a file. E.g. <br> ```ls b >> o.txt```
 \>&            | write into stream. E.g. <br> ```ls c > o2.txt 2>&1```
 <              | receive stream from a file. E.g. <br> ```wc < o.txt```
-<<             | embed the text that will be fed to a command within the script<br> Example<br> ```cat << EOF > output.txt``` <br> ```line 1```  <br> ```line 2``` <br> ```line 3``` <br> ```EOF``` <br> ```echo done```
+<<             | embed the text that will be fed to a command within the script<br> Example<br> ```cat << EOF > output.txt``` <br> ```line 1```  <br> ```line 2``` <br> ```line 3``` <br> ```EOF``` <br> ```echo done```<br> also known as heredoc
+<<<            | expand variable and feed into the stdin of the command<br> Example<br> ```wc <<< $word```<br>also known as herestring
 
 ### 3.2.2. Additional Examples
 #### 3.2.2.1. Send standard output to sout.txt and standard error to serr.txt
@@ -212,7 +216,10 @@ OR
 
 ```command1 &> sone.txt```
 
-#### 3.2.2.3. Ignore both standard input and output
+#### 3.2.2.3. Check if a string is present in a shell variable
+```grep "ABC" <<< $var```
+
+#### 3.2.2.4. Ignore both standard input and output
 ```command1 &> /dev/null```
 
 ***/dev/null** is a null device file. This will discard anything written to it, and will return EOF on reading.*
@@ -234,13 +241,15 @@ Examples:
 ## 3.4. xargs
 - short for extended arguments
 - some commands can take arguments from both standard input and as command-line arguments.
--  however, there are some commands that cannot take input from standard input. They accept inputs only from arguments. For these commands we need to use args.
--  xargs converts input from standard input into arguments to a command.
--  divides the arguments to a permitted number and runs the command repeatedly over each greoup of arguments.
--  using -n option, the number of arguments per command can be specified. 
+- however, there are some commands that cannot take input from standard input. They accept inputs only from arguments. For these commands we need to use args.
+- xargs converts input from standard input into arguments to a command.
+- divides the arguments to a permitted number and runs the command repeatedly over each greoup of arguments.
+- using -n option, the number of arguments per command can be specified. 
    ```find . | xargs -n1 basename```
--  in order to assign the std input to a placeholder , use ```-I{}```. the placeholder is usually used when we want to place the std input in the middle of a command<br>
+- in order to assign the std input to a placeholder , use ```-I{}```. the placeholder is usually used when we want to place the std input in the middle of a command<br>
    ```ls | xargs -I{} echo {} file is found```
+- xargs, by default, divides the input into arguments using whitespace. When -0 option is used, xargs uses null termination to identify arguments.
+ 
 
 Examples:
 - print the number lines/words/characters in the files in a directory<br>
@@ -249,6 +258,9 @@ Examples:
   ```find . -type f | xargs basename -a | grep "\." | rev | cut -f1 -d'.' | rev | sort | uniq -c | sort -n```
 - rename all files in a directory<br>
   ```ls | xargs -I{} mv {} {}.bkp```
+- copy all .c files to a specific directory<br>
+  ```find . -name "*.c" -print0 | xargs -0 -n1  -I{} cp {} some/folder/```
+  <br>*The print0 option of the find command prints the file names with the null character as termination character. By using the -0 option with xargs, it starts looking for the null character for reading filenames from the stdin.*
 
 ## 3.5. tee
 - the command reads from standard input and writes it to a standard output and to one or more files
@@ -270,8 +282,31 @@ wildcard | description                                                        | 
 [!abc]   | matches any one character that is not in the brackets              | ls [!r]at    | bat, cat, Bat, Cat, Rat           | rat
 [!a-z]   | matches any one character that is not in the range in the brackets | ls day[!1-9] | day0, days                        | day1 upto day9
 
+# 5. Brace expansion
+- it is generation of a range of strings to be used on the command line
+- useful for generating a list of sequential data or running any command on sequence of data.
+- a range or comma-separated list of data can be used for expansion. They are enclosed within curly braces.
+- example: 
+  - {0..4} generates a sequence from 0 to 4
+  - {alice, bob, charlie} generates alice, bob and charlie
+- the list can be preceded by an optional string (called preamble or prefix). this is prefixed to each string in the braces
+- the list can be followed by an optional string (called postscript or postfix). this is appended to each string in the braces
+- syntax -
+  - string list<br>```{String1, String2}```
+  - range list<br>```{<start>..<end>}```
+  - range list with custom increment<br>```{<start>..<end>..<increment>}```
+  - ```<prefix>{ string or range }<postfix>```
 
-# 5. Job control
+## 5.1. Examples
+- create files for each day of month January<br>```touch {1..31}```
+- print all even numbers from 1 to 100<br>```echo {2..100..2}```
+- create input, output, backup and error folders<br>```mkdir /some/path/{input, output, backup, error}```
+- print the alphabets in reverse order<br>```echo {z..a}```
+- create a backup of a file<br>```cp file.txt{,.bkp}```
+- restore from .bkp file<br>```mv file.txt{.bkp,}```
+- create folder for each day of January, February and March<br>```mkdir -p ~/logs/{January/{1..31},February/{1..28},March/{1..31}}```
+
+# 6. Job control
 - command line provides the ability to stop/suspend the execution of a process and resume a suspended process at a later point in time
 - each running program is called job
 - unique id is assigned to every job 
@@ -295,7 +330,7 @@ Examples:
 - resume a job in the background<br>```bg %2 # where 2 is the job number```
 - terminate a job<br>```kill %2 # where 2 is the job number```
 
-# 6. Process handling
+# 7. Process handling
 
 - Get a snapshot of processes running with ```ps``` command
 - Get the process id of a command by ```ps -ef | grep command```
@@ -305,12 +340,12 @@ Examples:
 - wait for completion of specific process<br>```wait 1234 # where 1234 is the process id```
 
 
-## 6.1. difference between ```ps``` and ```jobs```
+## 7.1. difference between ```ps``` and ```jobs```
 - ```jobs``` tells the list of jobs the current shell is managing
 - ```ps``` tells the list of all the processes running in the system
 
 
-# 7. Quoting
+# 8. Quoting
 - Quoting is used to remove special meanings from characters or words
 - single quotes - when the single quotes are used, every character within the quotes is preserved and is not evaluated
 - double quotes - when the double qoutes are used, the dollar sign, back quotes and blackslashes are evaluated and interpreted.
@@ -325,9 +360,9 @@ escape character  | ```echo \$HOME```  | $HOME
 single quote      | ```echo '$HOME'``` | $HOME
 double quote      | ```echo "$HOME"``` | /home/user1/
 
-# 8. Basic file management
+# 9. Basic file management
 
-## 8.1. list directory ```ls```
+## 9.1. list directory ```ls```
 command                     | description
 ---                         | ---
 ```ls```                    | list the contents of current directory
@@ -340,7 +375,7 @@ command                     | description
 ```ls /path/to/dirextory``` | list files in the directory mentioned
 
 
-## 8.2. show file contents
+## 9.2. show file contents
 command                           | description
 ---                               | ---
 ```cat demo.txt```                | show the contents of file. use for relatively small files
@@ -353,9 +388,9 @@ command                           | description
 ```diff file1 file2```            | shows difference between 2 files
 ```comm file1 file2```            | compare 2 sorted file
 
-## 8.3. file handling
+## 9.3. file handling
 
-### 8.3.1. copy
+### 9.3.1. copy
 command                           | description
 ---                               | ---
 ```cp file1 file2```              | copy file1 to file2
@@ -363,14 +398,14 @@ command                           | description
 ```cp -R directory1 directory2``` | copy contents of directory1 to directory2
 ```cp *.txt directory1```         | copy all files ending with .txt to directory1
 
-### 8.3.2. move or rename
+### 9.3.2. move or rename
 command                           | description
 ---                               | ---
 ```mv file1 file2```              | rename file1 to file2
 ```mv file1 directory1/```        | move file1 to directory1
 ```mv *.jpg directory1/```        | move all files ending with .jpg to directory1
 
-### 8.3.3. delete
+### 9.3.3. delete
 command                           | description
 ---                               | ---
 ```rm file1```                    | remove file1
@@ -379,7 +414,7 @@ command                           | description
 ```rm -d emptyDirectory```        | remove an empty directory
 ```rm -r directory1```            | recursively remove all files, subdirectories and directory of directory1
 
-### 8.3.4. file linking
+### 9.3.4. file linking
 - a symbolic link is a file that points to another file or directory
 - there are 2 types of links
   - **Hard link** -> it is an additional name for the existing file. Each file is associated with an unique number. This unique number is called inode. Hardlink associate 2 or more filenames to the same inode and in turn the same file. If the original file is removed, the contents are still available via the hardlink
@@ -390,7 +425,7 @@ command                           | description
 ```ln file1 link1```              | create a hardlink link1 to file file1
 ```ln -s file1 link1```           | create a softlink link1 to file file1
 
-### 8.3.5. change directory
+### 9.3.5. change directory
 
 command                           | description
 ---                               | ---
@@ -401,21 +436,21 @@ command                           | description
 ```cd /```                        | Change to the root directory
 ```cd ~/dir1/dir2```              | Change to directory relative to home directory
 
-### 8.3.6. display disk usage
+### 9.3.6. display disk usage
 
 command                           | description
 ---                               | ---
 ```du```                          | estimates and displays the disk space used by the files
 ```du -h *```                     | prints size in human readable'
 
-### 8.3.7. file ownership and permissions
+### 9.3.7. file ownership and permissions
 
 command                           | description
 ---                               | ---
 ```chmod```                       | change permissions
 ```chown```                       | change ownership
 
-# 9. Special shell variables
+# 10. Special shell variables
 
 - there are special variables that are set internally
 - these variables are available to the user
@@ -429,7 +464,7 @@ $!        | the process id of the last background process
 $_        | the last argument of the previous command
 
 
-# 10. Exit codes
+# 11. Exit codes
 - also known as return code
 - it is the code that is returned by command or process after it finishes
 - following are few exit codes and their meaning
@@ -444,12 +479,12 @@ exit code | description
 
 
 
-# 11. ```grep```
+# 12. ```grep```
 - searches for pattern in files and prints each line that matches the input pattern
 ```grep -<options> <pattern> <filenames>```
 - grep can be used to search in a single file or in multiple files
 
-## 11.1. Useful ```grep``` options
+## 12.1. Useful ```grep``` options
 
 option  | description
 ---     | ---
@@ -463,7 +498,7 @@ option  | description
 -B\<n>  | include n lines before match
 -C\<n>  | include n lines before and after the match
 
-### 11.1.1. Examples
+### 12.1.1. Examples
 - lets say a demo file(demo.txt) has following content
 
 > THIS IS UPPER CASE LINE<br>
@@ -498,7 +533,7 @@ option  | description
 - Get 2 lines before and after the matching line<br>
   ```grep -C2 "This" demo.txt```
  
-## 11.2. Regular expression in grep
+## 12.2. Regular expression in grep
 - a regular expression is a sequence of characters that specifies the search pattern in text.
 - different characters have special meaning in regular expressions
 
@@ -514,7 +549,7 @@ end$      | matches the pattern only if the pattern is at the end of the line
 \*        | mathces 0 or more occurences of the preceding character
 .*        | matches zero or more of any character
 
-## 11.3. Examples
+## 12.3. Examples
 
 - Match any one character<br>
   ```grep "[Tt]his" demo.txt```
@@ -536,21 +571,22 @@ end$      | matches the pattern only if the pattern is at the end of the line
 
 **Note:** grep can have regular expressions in the search pattern part, and can have wildcards in the files to search section.
 
-# 12. ```find```
+# 13. ```find```
 - the ```find``` command is used to search and locate the list of files and directories
 - the list returned will satisfy the conditions used in find command.
 - syntax is ``` find [starting point] [expression] ```
 - ```-exec [command]``` can be used to run command on the files located by ```find```
+- by default all the results are newline terminated. -print0 option can be used to make the results null terminated
 
-## 12.1. Examples
+## 13.1. Examples
 - find files with specific name<br> ```find . -name demo.txt```
 - find files with a specific pattern<br> ``` find ./Codes -name *.cpp```
 - find directories with specific name<br> ```find . -name Codes -type d```
 - find files with permission as 777 and change permissions to 644<br> ```find . -type f -perm 0777 -print -exec chmod 644 {} \;```
 - find and remove files<br>```find . -type f -name "*.bkp" -exec rm -f {};```
 
-# 13. ```sed``` filter and transform text
-## 13.1. Overview
+# 14. ```sed``` filter and transform text
+## 14.1. Overview
 - looks for pattern and edits them
 - works on both files and stdin
 - original files is not updated
@@ -575,7 +611,7 @@ i       | insert a line before pattern
 c       | change a line
 y       | transform
 
-## 13.2. Examples
+## 14.2. Examples
 - remove blank lines<br>``` sed '/^$/d' file.txt```
 - remove all lines with search string<br>```sed '/Search/d' file.txt```
 - remove all instances of search string<br>```sed 's/Search//g' file.txt```
@@ -590,19 +626,19 @@ y       | transform
 - change a line with a pattern<br>```sed '/pattern/ c line changed here' file.txt```
 - change a->p, b->q, c->r<br>```sed 'y/abc/pqr/' file.txt```
   
-## 13.3. Grouping
+## 14.3. Grouping
 - sed allows capturing specific parts of text into groups.
 - these groups can be manipulated
 - group is enclosed within parentheses expression "\(" and "\)" in the search string
 - each group is assigned a number. The first group is assigned \1 and so on.
 - \1 can be both in pattern string and replacement string
 
-### 13.3.1. Grouping Examples:
+### 14.3.1. Grouping Examples:
 - switch first and second columns<br>```sed 's/\([a-z]*\) \([a-z]*\)/\2 \1/' file.txt```
 - print lines which have consecutive duplicate words<br>```sed -n '/\([a-z][a-z]*\) \1/p' file.txt```
 - remove consecutive duplicate words in a line<br>```sed 's/\([a-z][a-z]*\) \1/\1/' file.txt```
 
-## 13.4. Hold Buffer
+## 14.4. Hold Buffer
 - When sed read text, each line is placed into a temporary space.
 - When a new line is read, the old text is replaced by the new line in the temporary space.
 - This temporary space is called pattern space.
@@ -616,14 +652,14 @@ H       | append pattern buffer into hold space
 g       | copy hold space to pattern space
 G       | append hold buffer into pattern buffer
 
-### 13.4.1. Example
+### 14.4.1. Example
 - print one line after and before the pattern match<br>```sed -n '/999/ !{x;d};/999/ {x;p;x;p;n;p}' file.txt```
 - add space after every line<br>```sed 'G' file.txt```
 - insert blank line above every line which matches pattern<br>```sed '/start/ {x;p;x}' file.txt```
 - Insert blank line after every line which matches pattern<br>```sed '/start/ {G}' file.txt```
 - Insert blank line before and after every line which matches pattern<br>```sed '/start/ {x;p;x;G}' file.txt```
 
-# 14. ```awk```
+# 15. ```awk```
 - command line utility to find, process and transform text files
 - the basic syntax is ```pattern { action }```
   - the pattern is compared with every input line. pattern can be any regular expression
@@ -645,7 +681,7 @@ G       | append hold buffer into pattern buffer
 - awk supports associative arrays. example ```var[key] = value```
 - on integers, basic arithmatic operations (+-*/%) are supported. autoincrement(++) and decrement(--) is also supported.
 
-## 14.1. Actions
+## 15.1. Actions
 - following are few actions that can be performed
 
 action                                                                      | description
@@ -659,7 +695,7 @@ action                                                                      | de
 { for (i=1; i < x; i++) { action } }                                        | for loop
 { for (item in c) { action } }                                              | for loop iterating over a list
 
-## 14.2. Special variables
+## 15.2. Special variables
 
 variable    | desc
 ---         | ---
@@ -672,7 +708,7 @@ NR          | Number of lines processed so far. cannot be updated by user
 
 *Note: -F option can be used to update the input field separator -> ```awk -F":"'{ print $1 }' file.txt```*
 
-## 14.3. Examples
+## 15.3. Examples
 - split up “,” (comma) separated fields and print the third field ($3)<br>```awk -F"," '{print $2}' file.txt```
 - print the 3rd field of a csv if the second field ($2) exists and is not empty<br>```awk -F"," '{if ($2)print $3}' file.txt```
 - print the last field in each line<br>```awk -F"," '{ print $NF }' file.txt```
@@ -686,32 +722,33 @@ NR          | Number of lines processed so far. cannot be updated by user
 - print first 10 lines of file (head)<br>```awk 'NR < 11' file.txt```
 - print last 10 lines of file (tail)<br>```awk '{vect[NR]=$0;} END{for(i=NR-9;i<=NR;i++) {print vect[i];}}' file.txt```
 - print the total number of bytes used by files<br>```ls -l | awk '{ x += $5 } END { print "Total bytes: " x }'```
+- read a csv(comma separated) file and print the first and third field in semicolon separated format<br>```awk 'BEGIN{FS=",";OFS=";"}{print $1, $3}' file.txt```
 
-# 15. Command substitution
+# 16. Command substitution
 - In command substitution, the output of a command replaces the command
 - the output of a command can be used an argument to another command
 - syntax is ``` `command` ``` and ```$(command)```
 - using backticks (`) is discouraged and has been deprecated
 - ```$(commmand)``` supports nesting i.e. ```$(command1 $(command2))```
 
-## 15.1. Examples
+## 16.1. Examples
 - assign the output of a command to a variable<br> ``` thedate=`date` ```
 - use the output of command as a parameter of another command<br> ``` vi $(grep -l 123 *) ```
 
-# 16. Process substitution
+# 17. Process substitution
 - the input or output of a command can appear as a file. This is known as process substitution
 - this technique is useful when we want to use the output of multiple commands as the input to a command
 - process substitution can also be used to capture output and redirect it to the input of a process
 - template - ```<(command)``` and ```>(command)```
 
-## 16.1. Examples:
+## 17.1. Examples:
 - sort and compare two files<br>
   ```diff <(sort file1) <(sort file2)```
 
 - compare 2 folders<br>
   ```diff <(ls $first_directory) <(ls $second_directory)```
 
-# 17. Subshell
+# 18. Subshell
 - a subshell is a child process launched by a shell
 - whenever a shell script is run, a subshell is created and the script is run in the subshell
 - variables defined in parent shell can be accessed if ```export``` is used while defining the variable
@@ -726,24 +763,24 @@ NR          | Number of lines processed so far. cannot be updated by user
 ```
 - to run a command or script in the current shell, without creating a subshell, use '.' as in ```. script.sh```
 
-# 18. Command grouping
+# 19. Command grouping
 - sometimes we need to run multiple commands and redirect all the output to a single file. Command grouping helps in this.
 - without command grouping we need to redirect each command output individually to a file
 
-## 18.1. using parentheses
+## 19.1. using parentheses
 - Grouping list of commands can be done using parentheses *()*
 - a subshell is created
 - example - ```(date; uptime) > file.txt```
 
-## 18.2. using curly braces
+## 19.2. using curly braces
 - Grouping commands can be done using curly braces *{}*
 - causes the list to be executed in the current shell context 
 - no subshell is created
 - example - ```{date; uptime;} > file.txt```
 
-# 19. Text editing with ```cut```, ```paste``` and ```join```
+# 20. Text editing with ```cut```, ```paste``` and ```join```
 
-## 19.1. ```cut```
+## 20.1. ```cut```
 - ```cut``` command cuts out sections from each line and writes result to standard output
 - syntax is ```cut OPTION [FILE]```
 
@@ -761,11 +798,11 @@ N-          | fron Nth character to end of line
 N-M         | from Nth character to Mth character
 -M          | from first to Mth character
 
-### 19.1.1. Examples
+### 20.1.1. Examples
 - print the first and third columns of a csv file<br>```cut -f1,3 -d"," file.txt```
 - print the first 3 characters of each line<br>```cut -c -3 file.txt```
 
-## 19.2. ```paste```
+## 20.2. ```paste```
 - merges lines of files
 - by default, the lines from each files are delimited by tab
 - when '-' is used instead of filename, the command reads from standard input
@@ -776,7 +813,7 @@ option  | description
 -d      | used to specify the delimiter
 -s      | paste one file at a time
 
-### 19.2.1. Examples
+### 20.2.1. Examples
 lets take 2 files - number.txt and name.txt
 > cat number.txt
 > 1<br>
@@ -794,11 +831,11 @@ lets take 2 files - number.txt and name.txt
 - merge 2 files, delimited by ','<br>```paste -d"," number.txt name.txt```
 - merge 2 files, sequentially, i.e first only first file is printed and then only the second file<br>```paste -s number.txt name.txt```
 
-## 19.3. ```join```
+## 20.3. ```join```
 - join lines of two files on a common field
 - syntax ```join [OPTIONS] FILE1 FILE2```
 
-### 19.3.1. Examples
+### 20.3.1. Examples
 lets take 2 files - number.txt and name.txt
 > cat number.txt
 > 1 100<br>
@@ -815,7 +852,7 @@ lets take 2 files - number.txt and name.txt
 
 - join 2 files based on the first column<br>```join number.txt name.txt```
 
-# 20. Aliases
+# 21. Aliases
 - aliases are short names for long commands
 - when we need to execute long commands multiple times, it is advisable to create aliases
 - syntax - ```alias [-p] [name[=value]]```
@@ -826,7 +863,7 @@ lets take 2 files - number.txt and name.txt
 - removing alias<br>```unalias name```
 - print all defined alias<br>```alias -p```
 
-## 20.1. useful aliases
+## 21.1. useful aliases
 ```bash
 alias gh='history|grep'
 alias c=clear
@@ -838,7 +875,7 @@ alias count='find . -type f | wc -l'
 alias f='find . |grep '
 ```
 
-# 21. Functions
+# 22. Functions
 - set of commands that accomplish a specific task
 - can be used numerous times
 - helps avoid writing the same code repeatedly
@@ -858,13 +895,13 @@ function_name () {
 function_name () { commands; }
 ```
 
-## 21.1. useful functions
+## 22.1. useful functions
 ```bash
 mcd() { mkdir -p "$1"; cd "$1";}
 cdl() { cd "$1"; ls;}
 ```
 
-# 22. sort
+# 23. sort
 - sort lines text files
 
 option  | description
@@ -874,7 +911,7 @@ option  | description
 -k <n>  | sort based on nth column
 -u      | sort and remove duplicates
 
-# 23. uniq
+# 24. uniq
 - report or omit repeated lines
 - the input file must be sorted
 
@@ -886,8 +923,8 @@ option  | description
 -i      | case insensitive comparison
 
 
-# 24. Conditions
-## 24.1. If else
+# 25. Conditions
+## 25.1. If else
 - if-then-else is supported in command line
 - Syntax
 ```bash
@@ -935,7 +972,7 @@ conditions  | description
 - 0 is considered true and numbers greater than 0 are considered false. 
   - this is because in Unix/Linix, when a process ends successfuly, it returns 0
 
-## 24.2. Short circuiting
+## 25.2. Short circuiting
 - an alternative way of using conditions is by using logical AND (&&) and logical OR(||)
 - evaluation of a logical expression is stopped, as soon as the outcome has been determined. This is known as short-circuiting.
 - in case of Logical AND, as soon as sub-expression becomes false, the whole expression evaluates to false
@@ -945,7 +982,7 @@ conditions  | description
   - in case of *expr1 || expr2*, if expr1 evaluates to true, then the whole expression will evaluate to true. So, expr2 is not evaluated at all.
   - || can be used to ensure that command2 is run only if command1 fails. example -> ```command1 || command2```
 
-### 24.2.1. example
+### 25.2.1. example
 - create folder if it does not exist  
 ```bash
   [ -d ./some/path/folder ] || mkdir /some/path/folder
@@ -956,40 +993,40 @@ conditions  | description
   cd /some/path/folder && touch file.txt
 ```
 
-# 25. Loops
-## 25.1. while loops
+# 26. Loops
+## 26.1. while loops
 - the loop runs as long as the given condition is true
 - syntax 
   ```bash 
   while [ condition ]; do commands; done
   ```
-### 25.1.1. example
+### 26.1.1. example
 - print all the folders with .c files<br>
 ```bash
 find . -name *.c | {while read -r filename; do dirname $filename; done;} | sort | uniq # dirname returns the directory name
 ```
 
 
-## 25.2. for loops
+## 26.2. for loops
 - the loop iterates over a list of values or preset number of times
 - syntax 
   ```bash
   for <variable name> in <a list of items>;do <some command> $<variable name>;done;
   ```
-### 25.2.1. example
+### 26.2.1. example
 - copy files from one folder to another
 ```bash
 for file in ./code/*.txt; do cp $file /home/code/backup; done
 ```
 
-# 26. ssh
+# 27. ssh
 - ssh (SSH client) is a program for logging into a remote machine and for executing commands on a remote machine
 - syntax ```ssh user@host```
 - running a single command on remote server<br>```ssh user@host command_to_run```
 - logging into server with different port<br>```ssh -p portnum user@host```
 - ssh connection using host in the middle```ssh -t reachable_host ssh unreachable_host```
 
-# 27. curl
+# 28. curl
 - used to transfer data from one server to another
 - syntax - ```curl [options] [URL]```
 
@@ -1002,35 +1039,35 @@ options | description
 -L      | follow redirects
 
 
-## 27.1. Examples
+## 28.1. Examples
 - retrieve a webpage<br>```curl example.com```
 - save a webpage<br>```curl example.com -o example.html```
 - resume a download<br>```curl -C - -O https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso```
 - fetch headers only<br>```curl -I example.com```
 - fetch weather<br>```curl wttr.in/london```
 
-## 27.2. handling REST calls
-### 27.2.1. GET
+## 28.2. handling REST calls
+### 28.2.1. GET
 - GET is used to fetch resource
 - the GET method is the default method
 - example ```curl https://reqres.in/api/users/2```
 
-### 27.2.2. POST
+### 28.2.2. POST
 - POST is used to create resource in a server
 - To send a curl POST request we use the option -X POST
 - example ```curl -X POST -H "Content-Type: application/json" -d '{"email": "eve.holt@reqres.in","password": "pistol"}' https://reqres.in/api/register```
 
-### 27.2.3. PUT
+### 28.2.3. PUT
 - PUT is used to update resource
 - To send a curl PUT request we use the option -X PUT
 - example ```curl -X PUT -H "Content-Type: application/json" -d '{"name": "morpheus","job": "zion resident"}' https://reqres.in/api/users/2```
 
-### 27.2.4. DELETE
+### 28.2.4. DELETE
 - DELETE is used to remove resource
 - To send a curl DELETE request we use the option -X DELETE
 - example ```curl -X DELETE https://reqres.in/api/users/2```
 
-# 28. wget
+# 29. wget
 - command line utility to download file
 
 options | description
@@ -1038,12 +1075,12 @@ options | description
 -O      | download file under different name
 -c      | resume a download
 
-## 28.1. Examples
+## 29.1. Examples
 - download a file<br>```wget https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso```
 - resume a download<br>```wget -c https://releases.ubuntu.com/21.10/ubuntu-21.10-desktop-amd64.iso```
 
 
-# 29. One liners
+# 30. One liners
 
 - print the files and directories in tree structure<br>```find . | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/"```
 - print the directories in tree structure<br>```find . -type d   | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/| - \1/"```
@@ -1052,18 +1089,21 @@ options | description
 - find lines in file1 that is not present in file2<br>```cat file1 file2 file2 | uniq -u```
 - find most frequently used commands<br>```history | cut -c8- | sort | uniq -c | sort -rn | head```
 - recursively remove only directories with no files<br>```find . -depth -type d -exec rmdir {} \;```
+- count the number of total active network interfaces<br>```wc -w <<<$(netstat -i | cut -d" " -f1 | egrep -v "^Kernel|Iface|lo")```
+- display all the files/directories sorted by size<br>```du -ah . 2>/dev/null | sort -hr  | less```
 
-# 30. Further reading
+# 31. Further reading
 - 
 
-# 31. Change History
+# 32. Change History
 - presented in reversed chronological order i.e. the latest change is at the top
 
 Name                  | Date          | Change Description
 ----                  | ----          | ---
-Utsav Barman          | 26 Jan 2022   | added command grouping
-Utsav Barman          | 25 Jan 2022   | added chown, chmod and du
-Utsav Barman          | 25 Jan 2022   | added & to start a background job; added curl and wget
+Utsav Barman          | 26 Jan 2022   | added: [brace expansion, find piped to xargs, herestrings, awk example]
+Utsav Barman          | 26 Jan 2022   | added: [command grouping]
+Utsav Barman          | 25 Jan 2022   | added: [chown, chmod and du]
+Utsav Barman          | 25 Jan 2022   | added: [& to start a background job, added curl and wget]
 Utsav Barman          | 25 Jan 2022   | read should be used with option -r ; used appropriate variable names in for loop example;
 Utsav Barman          | 25 Jan 2022   | Updated variable DATE to thedate. Uppercase variables are conventionally used for environment variables. Added $() for command substitution. backticks are discouraged; replaced -a with -e
 Utsav Barman          | 25 Jan 2022   | fixed typo for cd to root directory; added section for special shell variables and exit codes;
