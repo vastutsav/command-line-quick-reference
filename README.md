@@ -1118,8 +1118,8 @@ options | description
 
 Name                  | Date          | Change Description
 ----                  | ----          | ---
-Utsav Barman          | 26 Jan 2022   | added:[arithmetic expansion, grep recursively search, command substitution example]
-Utsav Barman          | 26 Jan 2022   | added:[ANSI C quoting]
+Utsav Barman          | 26 Jan 2022   | added: [arithmetic expansion, grep recursively search, command substitution example]
+Utsav Barman          | 26 Jan 2022   | added: [ANSI C quoting]
 Utsav Barman          | 26 Jan 2022   | added: [brace expansion, find piped to xargs, herestrings, awk example]
 Utsav Barman          | 26 Jan 2022   | added: [command grouping]
 Utsav Barman          | 25 Jan 2022   | added: [chown, chmod and du]
